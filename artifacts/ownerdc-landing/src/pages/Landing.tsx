@@ -1,11 +1,13 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import PlatformIntro from "@/components/PlatformIntro";
-import HowItWorks from "@/components/HowItWorks";
-import AppDashboard from "@/components/AppDashboard";
-import WhoItsFor from "@/components/WhoItsFor";
 import ThePlatform from "@/components/ThePlatform";
 import About from "@/components/About";
+import ForDrivers from "@/components/ForDrivers";
+import UpstreamApproach from "@/components/UpstreamApproach";
+import PracticalPillars from "@/components/PracticalPillars";
+import HowItWorks from "@/components/HowItWorks";
+import WhoItsFor from "@/components/WhoItsFor";
 import Footer from "@/components/Footer";
 
 export default function Landing() {
@@ -14,11 +16,13 @@ export default function Landing() {
       <Navbar />
       <Hero />
       <PlatformIntro />
-      <HowItWorks />
-      <AppDashboard />
-      <WhoItsFor />
       <ThePlatform />
       <About />
+      <ForDrivers />
+      <UpstreamApproach />
+      <PracticalPillars />
+      <HowItWorks />
+      <WhoItsFor />
       <Footer />
     </div>
   );

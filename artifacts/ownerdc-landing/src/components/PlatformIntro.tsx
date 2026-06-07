@@ -37,32 +37,6 @@ export default function PlatformIntro() {
             </p>
           </div>
         </div>
-
-        <div className="pb-12 lg:pb-16 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="border-l-4 border-brand-orange bg-white rounded-r-lg px-8 py-8 lg:px-10 lg:py-10">
-            <span className="inline-block text-brand-orange text-sm font-bold uppercase tracking-widest mb-3">
-              For Drivers
-            </span>
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-brand-navy leading-snug mb-3">
-              Know the job before you accept the load.
-            </h3>
-            <p className="text-brand-muted text-base lg:text-lg leading-relaxed max-w-3xl">
-              ODC shows whether work is safe, compliant and workable before it is accepted by an owner.
-            </p>
-          </div>
-
-          <div className="border-l-4 border-brand-orange bg-white rounded-r-lg px-8 py-8 lg:px-10 lg:py-10">
-            <span className="inline-block text-brand-orange text-sm font-bold uppercase tracking-widest mb-3">
-              For Operators
-            </span>
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-brand-navy leading-snug mb-3">
-              Allocate with confidence. Operate with clarity.
-            </h3>
-            <p className="text-brand-muted text-base lg:text-lg leading-relaxed max-w-3xl">
-              Manage work with visibility of hours, constraints, and compliance as the day unfolds.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
