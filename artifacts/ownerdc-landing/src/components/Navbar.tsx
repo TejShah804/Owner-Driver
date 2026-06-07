@@ -1,112 +1,98 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
-import { Server, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+
+function OdcLogo() {
+  return (
+    <div className="flex items-center gap-3">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="19" r="17" stroke="#F68520" strokeWidth="2" fill="none"/>
+        <circle cx="19" cy="19" r="11.5" stroke="#F68520" strokeWidth="1.5" fill="none"/>
+        <circle cx="19" cy="19" r="6" stroke="#F68520" strokeWidth="1.5" fill="none"/>
+        <circle cx="19" cy="3.5" r="2.5" fill="#F68520"/>
+        <circle cx="19" cy="34.5" r="2.5" fill="#F68520"/>
+        <circle cx="3.5" cy="19" r="2.5" fill="#F68520"/>
+        <circle cx="34.5" cy="19" r="2.5" fill="#F68520"/>
+      </svg>
+      <div className="leading-tight">
+        <div className="text-white font-bold text-sm tracking-tight">OwnerDriver</div>
+        <div className="text-white/70 font-normal text-xs tracking-widest uppercase">Collective</div>
+      </div>
+    </div>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Solutions", href: "#solutions" },
-    { name: "Infrastructure", href: "#infrastructure" },
-    { name: "About", href: "#about" },
-    { name: "Resources", href: "#resources" },
-    { name: "Contact", href: "#contact" },
+  const links = [
+    { href: "#how-it-works", label: "How it works" },
+    { href: "#who-its-for", label: "Who it's for" },
+    { href: "#safety-ewd", label: "Safety & EWD" },
+    { href: "#about", label: "About ODC" },
   ];
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-3"
-          : "bg-transparent py-5"
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        scrolled ? "bg-brand-navy shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary/20 transition-colors">
-              <Server className="h-6 w-6 text-primary" />
-            </div>
-            <span className="font-bold text-xl tracking-tight text-white">OwnerDC</span>
-          </Link>
+      <div className="flex items-center justify-between px-4 md:px-6 lg:px-10 py-3">
+        <a href="/" className="block">
+          <OdcLogo />
+        </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
-            <ul className="flex items-center gap-6">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-sm font-medium text-muted-foreground hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="flex items-center gap-4">
-              <Button variant="outline" className="border-white/20 hover:border-primary hover:bg-primary/10 hover:text-white">
-                Get a Quote
-              </Button>
-              <Button className="bg-primary hover:bg-primary/90 text-white font-medium">
-                Book a Tour
-              </Button>
-            </div>
-          </nav>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="lg:hidden p-2 text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        <div className="hidden lg:flex items-center gap-8">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-sm font-medium text-white hover:text-brand-orange transition-colors"
+            >
+              {l.label}
+            </a>
+          ))}
+          <button className="inline-flex items-center px-5 py-2 rounded-full bg-brand-orange text-white text-sm font-semibold hover:bg-orange-500 transition-colors cursor-pointer">
+            Register Interest
           </button>
         </div>
+
+        <button
+          className="lg:hidden text-white p-1 cursor-pointer"
+          aria-label="Toggle menu"
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 5h16"/>
+            <path d="M4 12h16"/>
+            <path d="M4 19h16"/>
+          </svg>
+        </button>
       </div>
 
-      {/* Mobile Nav */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background border-b border-white/10 overflow-hidden"
-          >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              <ul className="flex flex-col gap-4">
-                {navLinks.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.href}
-                      className="text-lg font-medium text-muted-foreground hover:text-white block py-2"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-white/10">
-                <Button variant="outline" className="w-full justify-center">Get a Quote</Button>
-                <Button className="w-full justify-center">Book a Tour</Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+      {menuOpen && (
+        <div className="lg:hidden bg-brand-navy px-6 pt-4 pb-8 flex flex-col gap-5 shadow-xl">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-lg font-medium text-white hover:text-brand-orange transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              {l.label}
+            </a>
+          ))}
+          <button className="block w-full text-center px-5 py-3 rounded-full bg-brand-orange text-white text-base font-semibold hover:bg-orange-500 transition-colors cursor-pointer mt-2">
+            Register Interest
+          </button>
+        </div>
+      )}
+    </nav>
   );
 }
