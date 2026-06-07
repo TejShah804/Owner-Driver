@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "i2kbNXKMnmB_1TzpNcsho"
+uri = "file://ownerdc-landing.zip"
+type = "unspecified"
+title = "OwnerDC Landing Page — Production Build"
